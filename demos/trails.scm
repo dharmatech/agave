@@ -3,6 +3,8 @@
 
 (import (except (rnrs) for-each)
 
+        (rnrs mutable-pairs)
+
         (only (srfi :1) circular-list for-each iota)
 
         (gl) (glu) (glut)
