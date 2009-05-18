@@ -11,29 +11,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(import (rnrs) (srfi :27) (gl) (glut)
-
+(import (rnrs)
+        (only (srfi :1) list-tabulate)
+        (srfi :27)
+        (gl)
+        (glut)
+        (glamour misc)
+        (glamour window)
         (glamour frames-per-second)
         (glamour mouse)
-
         )
-
-(glutInit (vector 0) (vector ""))
-
-(glutInitDisplayMode GLUT_DOUBLE)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; From SRFI 1
-
-(define (iota n)
-  (let loop ((i 0))
-    (if (= i n)
-        '()
-        (cons i (loop (+ i 1))))))
-
-(define (list-tabulate n procedure)
-  (map procedure (iota n)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -73,37 +60,18 @@
 
 (random-source-randomize! default-random-source)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(initialize-glut)
 
-(define width  500)
-(define height 500)
-
-(glutInitWindowSize 500 500)
-
-(glutCreateWindow "Empathy by Kyle McDonald")
-
-(glutReshapeFunc
- (lambda (w h)
-
-   (glEnable GL_LINE_SMOOTH)
-
-   (glEnable GL_BLEND)
-   (glBlendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA)
-
-   (glViewport 0 0 w h)
-
-   (glMatrixMode GL_PROJECTION)
-
-   (glLoadIdentity)
-
-   (glOrtho 0.0 (inexact w) (inexact h) 0.0 -1000.0 1000.0)
-   
-   (set! width  w)
-   (set! height h)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(window (size 500 500)
+        (title "Empathy by Kyle McDonald")
+        (reshape (width height) invert-y))
 
 (passive-motion mouse-x mouse-y)
+
+(glEnable GL_LINE_SMOOTH)
+
+(glEnable GL_BLEND)
+(glBlendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -182,16 +150,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(glutDisplayFunc
+(buffered-display-procedure
+
  (lambda ()
 
-   (glMatrixMode GL_MODELVIEW)
-
-   (glLoadIdentity)
-
-   (glClearColor 1.0 1.0 1.0 1.0)
-
-   (glClear GL_COLOR_BUFFER_BIT)
+   (background 1.0)
 
    (glColor4d 0.0 0.0 0.0 0.5)
 
@@ -200,9 +163,7 @@
    (glEnd)
 
    (set! p-mouse-x mouse-x)
-   (set! p-mouse-y mouse-y)
-
-   (glutSwapBuffers)))
+   (set! p-mouse-y mouse-y)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
