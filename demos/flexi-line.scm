@@ -11,73 +11,22 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(import (rnrs) (gl) (glut))
+(import (rnrs)
+        (only (srfi :1) list-tabulate)
+        (gl) (glut)
+        (glamour misc)
+        (glamour window)
+        (glamour mouse))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; From SRFI 1
+(initialize-glut)
 
-(define (iota n)
-  (let loop ((i 0))
-    (if (= i n)
-        '()
-        (cons i (loop (+ i 1))))))
+(window (size 500 500)
+        (title "Flexi Line by Jill Jackson")
+        (reshape (width height) invert-y))
 
-(define (list-tabulate n procedure)
-  (map procedure (iota n)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(glutInit (vector 0) (vector ""))
-
-(glutInitDisplayMode GLUT_DOUBLE)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(define width  500)
-(define height 500)
-
-(glutInitWindowSize 500 500)
-
-(glutCreateWindow "Flexi Line by Jill Jackson")
-
-(glutReshapeFunc
- (lambda (w h)
-
-   (glViewport 0 0 w h)
-
-   (glMatrixMode GL_PROJECTION)
-
-   (glLoadIdentity)
-
-   (glOrtho 0.0 (inexact w) (inexact h) 0.0 -1000.0 1000.0)
-   
-   (set! width  w)
-   (set! height h)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(define mouse-button #f)
-(define mouse-state  GLUT_UP)
-(define mouse-x      0)
-(define mouse-y      0)
-
-(glutMouseFunc
- (lambda (button state x y)
-   (set! mouse-button button)
-   (set! mouse-state  state)
-   (set! mouse-x      x)
-   (set! mouse-y      y)))
-
-(glutMotionFunc
- (lambda (x y)
-   (set! mouse-x x)
-   (set! mouse-y y)))
-
-(glutPassiveMotionFunc
- (lambda (x y)
-   (set! mouse-x x)
-   (set! mouse-y y)))
+(mouse mouse-button mouse-state mouse-x mouse-y)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -135,24 +84,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(glutDisplayFunc
+(buffered-display-procedure
+ 
  (lambda ()
    
-   (glMatrixMode GL_MODELVIEW)
+   (background 0.0)
    
-   (glLoadIdentity)
-
-   (glClearColor 0.0 0.0 0.0 0.0)
-
-   (glClear GL_COLOR_BUFFER_BIT)
-
    (glColor4d 1.0 1.0 1.0 1.0)
-
+   
    (glBegin GL_LINE_STRIP)
    (update-points)
-   (glEnd)
-   
-   (glutSwapBuffers)))
+   (glEnd)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
