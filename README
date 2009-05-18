@@ -1,5 +1,33 @@
 
-Art of Computer Programming
-Computer Programming of Art
-Programming Computer of Art
+* Setup for Ikarus
+
+    cd /usr/local/lib/ikarus
+
+    bzr branch lp:~ikarus-libraries-team/ikarus-libraries/srfi
+
+    cd
+
+    git clone git://github.com/dharmatech/agave.git
+
+    echo export IKARUS_LIBRARY_PATH=`pwd`/agave >> ~/.bashrc
+
+* Setup for Ypsilon
+
+    cd
+
+    git clone git://github.com/dharmatech/agave.git
+
+    echo export YPSILON_SITELIB=`pwd`/agave >> ~/.bashrc
+
+* Run a demo on Ypsilon
+
+    cd agave/demos
+
+    ypsilon flexi-line.scm
+
+* Run a demo on Ikarus
+
+    cd agave/demos
+
+    ikarus --r6rs-script flexi-line.scm
 
