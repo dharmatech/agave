@@ -7,6 +7,7 @@
          buffered-display-procedure
          background
          gl-matrix-excursion
+         gl-begin
          )
 
  (import (rnrs) (gl) (glut))
@@ -66,6 +67,20 @@
          expr ...
 
          (glPopMatrix)))))
+
+ (define-syntax gl-begin
+
+   (syntax-rules ()
+
+     ( (gl-begin mode expr ...)
+
+       (begin
+
+         (glBegin mode)
+
+         expr ...
+
+         (glEnd)) )))
 
  )
 
