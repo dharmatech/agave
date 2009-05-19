@@ -1,48 +1,35 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(import (except (rnrs) for-each)
-
-        (rnrs mutable-pairs)
-
-        (only (srfi :1) circular-list for-each iota)
-
-        (gl) (glu) (glut)
-
-        (glamour window)
-        
-        (glamour mouse)
-
-        (glamour misc)
-
-        )
+;; Based on an example from the Processing book
+;;
+;; Ported to Scheme by Ed Cavazos
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define oval
+(import (except (rnrs) for-each)
+        (rnrs mutable-pairs)
+        (only (srfi :1) circular-list for-each iota)
+        (gl)
+        (glu)
+        (glut)
+        (glamour window)
+        (glamour mouse)
+        (glamour misc))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define circle
 
   (let ((quadric (gluNewQuadric)))
 
-    (lambda (x y w h)
+    (lambda (x y radius)
 
-      (glPushMatrix)
+      (gl-matrix-excursion
 
-      (glTranslated (+ x (/ w 2.0))
-                    (+ y (/ h 2.0))
-                    0.0)
+       (glTranslated (inexact x) (inexact y) 0.0)
 
-      (glPushMatrix)
-
-      (glScaled w h 0.0)
-
-      (gluDisk quadric 0.0 0.5 20 1)
-
-      (glPopMatrix)
-
-      (glPopMatrix))))
-
-(define (circle x y d)
-  (oval x y d d))
+       (gluDisk quadric 0.0 radius 20 1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -70,7 +57,7 @@
 (define points
   (apply circular-list
          (map (lambda (i)
-                (vector 0 0))
+                (vector 0.0 0.0))
               indices)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -88,7 +75,7 @@
 
                  (circle (vector-ref point 0)
                          (vector-ref point 1)
-                         (max 5.0 (* fraction 25.0)))))
+                         (max 5.0 (* fraction 14.0)))))
 
              indices points)))
 
@@ -107,6 +94,3 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (glutMainLoop)
-
-
-                         
