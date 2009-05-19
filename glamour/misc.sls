@@ -6,6 +6,7 @@
  (export initialize-glut
          buffered-display-procedure
          background
+         gl-matrix-excursion
          )
 
  (import (rnrs) (gl) (glut))
@@ -51,6 +52,20 @@
     ( (grey)
 
       (background grey grey grey 1.0) )))
+
+ (define-syntax gl-matrix-excursion
+
+   (syntax-rules ()
+
+     ( (gl-matrix-excursion expr ...)
+
+       (begin
+
+         (glPushMatrix)
+
+         expr ...
+
+         (glPopMatrix)))))
 
  )
 
