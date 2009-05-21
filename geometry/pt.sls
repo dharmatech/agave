@@ -10,6 +10,7 @@
          pt-y pt-y-set!
          pt+  pt-  pt*  pt/
          pt+n pt-n pt*n pt/n
+         pt-neg
          pt-norm
          pt-normalize
          pt-dot)
