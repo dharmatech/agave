@@ -9,7 +9,9 @@
 
     $ git clone git://github.com/dharmatech/agave.git
 
-    $ echo export IKARUS_LIBRARY_PATH=`pwd`/agave >> ~/.bashrc
+    $ cd agave
+
+    $ echo export IKARUS_LIBRARY_PATH=`pwd`:`pwd`/demos >> ~/.bashrc
 
 * Setup for Ypsilon
 
@@ -17,7 +19,9 @@
 
     $ git clone git://github.com/dharmatech/agave.git
 
-    $ echo export YPSILON_SITELIB=`pwd`/agave >> ~/.bashrc
+    $ cd agave
+
+    $ echo export YPSILON_SITELIB=`pwd`:`pwd`/demos >> ~/.bashrc
 
 * Run a demo in Ypsilon
 
