@@ -3,12 +3,12 @@
 
  (misc random-weighted)
 
- (export random-weighted call-random-weighted)
+ (export random-weighted random-weighted* call-random-weighted)
 
  (import (rnrs)
          (only (srfi :1) iota take list-index)
          (srfi :27)
-         )
+         (math basic))
 
  (define (probabilities weights)
    (let ((sum (apply + weights)))
@@ -29,6 +29,17 @@
                    (> elt n)))
                (map (lambda (elt) (* elt 1000))
                     (layers (probabilities weights)))))
+
+ (define (random-weighted* weights)
+
+   (let ((scaled-layers (map (multiply-by 1000)
+                             (layers (probabilities weights)))))
+
+     (lambda ()
+
+       (let ((n (random-integer 1000)))
+
+         (list-index (greater-than n) scaled-layers)))))
 
  (define-syntax call-random-weighted
    
