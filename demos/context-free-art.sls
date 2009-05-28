@@ -74,7 +74,19 @@
 
  (define (x      amt)   (glTranslated amt 0.0 0.0))
  (define (y      amt)   (glTranslated 0.0 amt 0.0))
- (define (size   scale) (glScaled scale scale 1.0))
+
+ ;; (define (size   scale) (glScaled scale scale 1.0))
+
+ (define size
+   
+   (case-lambda
+    
+    ((scale)
+     (glScaled scale   scale   1.0))
+    
+    ((scale-x scale-y)
+     (glScaled scale-x scale-y 1.0))))
+ 
  (define (rotate angle) (glRotated (+ 0.0 angle) 0.0 0.0 1.0))
  (define (flip   angle) (gl-flip angle))
 
@@ -239,6 +251,10 @@
 
    (glutReshapeFunc
     (lambda (w h)
+      (glEnable GL_POINT_SMOOTH)
+      (glEnable GL_LINE_SMOOTH)
+      (glEnable GL_POLYGON_SMOOTH)
+
       (glEnable GL_BLEND)
       (glBlendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA)
       (glViewport 0 0 w h)))
