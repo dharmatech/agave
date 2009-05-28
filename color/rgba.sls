@@ -3,18 +3,22 @@
 
  (color rgba)
 
- (export (rename (rgba <rgba>)
-                 (make-rgba rgba))
-         rgba?
-         rgba-red rgba-green rgba-blue rgba-alpha
-         rgba-red-set! rgba-green-set! rgba-blue-set! rgba-alpha-set!)
+ (export <rgba> rgba rgba? rgba-clone rgba-assign! apply-rgba
+           
+         rgba-red   rgba-red-set!   rgba-red-change!
+         rgba-green rgba-green-set! rgba-green-change!
+         rgba-blue  rgba-blue-set!  rgba-blue-change!
+         rgba-alpha rgba-alpha-set! rgba-alpha-change!)
 
- (import (rnrs))
+ (import (rnrs) (misc define-record-type))
 
- (define-record-type rgba
-   (fields (mutable red)
-           (mutable green)
-           (mutable blue)
-           (mutable alpha)))
+ (define-record-type++
+
+   (<rgba> rgba rgba? rgba-clone rgba-assign! apply-rgba)
+   
+   (fields (mutable red   rgba-red   rgba-red-set!   rgba-red-change!)
+           (mutable green rgba-green rgba-green-set! rgba-green-change!)
+           (mutable blue  rgba-blue  rgba-blue-set!  rgba-blue-change!)
+           (mutable alpha rgba-alpha rgba-alpha-set! rgba-alpha-change!)))
 
  )
