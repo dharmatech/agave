@@ -3,43 +3,26 @@
 
  (color hsva)
 
- (export (rename (hsva <hsva>)
-                 (make-hsva hsva))
-         hsva?
-         hsva-hue hsva-saturation hsva-value hsva-alpha
-         hsva-hue-set! hsva-saturation-set! hsva-value-set! hsva-alpha-set!
-         hsva-clone
-         hsva-hue-change!
-         hsva-saturation-change!
-         hsva-value-change!
-         hsva-alpha-change!
-         )
+ (export <hsva> hsva hsva? hsva-clone hsva-assign! apply-hsva
+           
+         hsva-hue        hsva-hue-set!        hsva-hue-change!
+         hsva-saturation hsva-saturation-set! hsva-saturation-change!
+         hsva-value      hsva-value-set!      hsva-value-change!
+         hsva-alpha      hsva-alpha-set!      hsva-alpha-change!)
 
- (import (rnrs) (misc record-utils))
+ (import (rnrs) (misc define-record-type))
 
- (define-record-type hsva
-   (fields (mutable hue)
-           (mutable saturation)
-           (mutable value)
-           (mutable alpha)))
+ (define-record-type++
 
- (define (hsva-clone color)
-   (make-hsva (hsva-hue        color)
-              (hsva-saturation color)
-              (hsva-value      color)
-              (hsva-alpha      color)))
-
- (define hsva-hue-change!
-   (field-changer (record-type-descriptor hsva) 'hue))
-
- (define hsva-saturation-change!
-   (field-changer (record-type-descriptor hsva) 'saturation))
-
- (define hsva-value-change!
-   (field-changer (record-type-descriptor hsva) 'value))
- 
- (define hsva-alpha-change!
-   (field-changer (record-type-descriptor hsva) 'alpha))
+   (<hsva> hsva hsva? hsva-clone hsva-assign! apply-hsva)
+   
+   (fields (mutable hue   hsva-hue   hsva-hue-set!   hsva-hue-change!)
+           (mutable saturation
+                    hsva-saturation
+                    hsva-saturation-set!
+                    hsva-saturation-change!)
+           (mutable value  hsva-value  hsva-value-set!  hsva-value-change!)
+           (mutable alpha hsva-alpha hsva-alpha-set! hsva-alpha-change!)))
  
 
  )
