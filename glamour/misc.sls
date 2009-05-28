@@ -84,17 +84,8 @@
 
          (glEnd)) )))
 
- (define (gl-color-rgba color)
-   (glColor4d (rgba-red   color)
-              (rgba-green color)
-              (rgba-blue  color)
-              (rgba-alpha color)))
-
- (define (gl-clear-color-rgba color)
-   (glClearColor (rgba-red   color)
-                 (rgba-green color)
-                 (rgba-blue  color)
-                 (rgba-alpha color)))
+ (define gl-color-rgba       (apply-rgba glColor4d))
+ (define gl-clear-color-rgba (apply-rgba glClearColor))
 
  )
 
