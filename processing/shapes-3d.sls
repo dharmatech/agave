@@ -44,14 +44,6 @@
 
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
- (define (gl-color-rgba color)
-   (glColor4d (rgba-red   color)
-              (rgba-green color)
-              (rgba-blue  color)
-              (rgba-alpha color)))
-
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
  (define (gl-pt-vertex p)
    (glVertex3d (pt-x p)
                (pt-y p)
