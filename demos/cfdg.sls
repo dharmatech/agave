@@ -1,7 +1,7 @@
 
 (library
 
- (context-free-art)
+ (cfdg)
 
  (export background
          viewport

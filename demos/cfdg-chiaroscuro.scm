@@ -5,7 +5,7 @@
 ;;
 ;; Ported to Scheme by Ed Cavazos
 
-(import (rnrs) (context-free-art) (cfdg-rule) (cfdg-abbreviations))
+(import (rnrs) (cfdg) (cfdg-rule) (cfdg-abbreviations))
 
 (rule black
       

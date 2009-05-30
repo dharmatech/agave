@@ -7,7 +7,7 @@
 ;;
 ;; Ported to Scheme by Ed Cavazos
 
-(import (rnrs) (context-free-art) (cfdg-rule))
+(import (rnrs) (cfdg) (cfdg-rule))
 
 (rule line
       (1 (a1)

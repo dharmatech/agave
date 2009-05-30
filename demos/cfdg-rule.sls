@@ -6,7 +6,7 @@
  (export rule)
 
  (import (rnrs)
-         (context-free-art)
+         (cfdg)
          (misc random-weighted))
 
  (define-syntax rule

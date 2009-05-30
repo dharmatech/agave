@@ -5,7 +5,7 @@
 
  (export s r f h sat b a)
 
- (import (rnrs) (context-free-art))
+ (import (rnrs) (cfdg))
 
  ;; geometric
 
