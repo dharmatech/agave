@@ -5,7 +5,7 @@
 ;;
 ;; Ported to Scheme by Ed Cavazos
 
-(import (rnrs) (cfdg) (cfdg-rule))
+(import (rnrs) (cfdg) (cfdg-rule) (cfdg-abbreviations))
 
 (rule line
       (1 (a1)
