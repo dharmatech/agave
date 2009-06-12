@@ -12,7 +12,8 @@
          (gl)
          (glut)
          (glamour misc)
-         (glamour window))
+         (glamour window)
+         (glamour frames-per-second))
 
  (define (ca-simulation width height S B C)
 
@@ -151,6 +152,10 @@
      (define (single-step)
        (set! run 'single-step))
 
+     (define frame-rate 20)
+
+     (glutIdleFunc (frames-per-second frame-rate))
+
      (buffered-display-procedure
       (lambda ()
         (background 0.0)
@@ -198,13 +203,19 @@
 
           ((#\return) (single-step))
 
+          ((#\q)
+           (set! frame-rate      (+ frame-rate 1))
+           (glutIdleFunc (frames-per-second frame-rate)))
+           
+          ((#\a)
+           (set! frame-rate (max (- frame-rate 1) 1))
+           (glutIdleFunc (frames-per-second frame-rate)))
+
           )))
 
      (random-source-randomize! default-random-source)
 
      (randomize 0.25))
-
-   (glutIdleFunc glutPostRedisplay)
 
    (for-each (lambda (line) (display line) (newline))
 
@@ -221,6 +232,9 @@
                "    spc - Pause and Resume"
                ""
                "    ret - Single step"
+               ""
+               "    q   - Increase frame rate"
+               "    a   - Decrease frame rate"
                ""
                ))
 
