@@ -5,7 +5,7 @@
 
 (library
 
- (glu)
+ (agave glu)
 
  (export
 

@@ -5,7 +5,10 @@
 ;;
 ;; Ported to Scheme by Ed Cavazos
 
-(import (rnrs) (cfdg) (cfdg-rule) (cfdg-abbreviations))
+(import (rnrs)
+        (agave demos cfdg)
+        (agave demos cfdg-rule)
+        (agave demos cfdg-abbreviations))
 
 (rule line
       (1 (a1)

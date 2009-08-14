@@ -1,7 +1,7 @@
 
 (library
 
- (geometry pt)
+ (agave geometry pt)
 
  (export (rename (pt <pt>)
                  (make-pt pt))
@@ -16,7 +16,7 @@
          pt-dot)
 
  (import (rnrs)
-         (glamour misc)
+         (agave glamour misc)
          )
 
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

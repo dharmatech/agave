@@ -1,7 +1,7 @@
 
 (library
 
- (cfdg)
+ (agave demos cfdg)
 
  (export background
          viewport
@@ -28,13 +28,13 @@
          (srfi :27)
          (gl)
          (glut)
-         (color rgba)
-         (color hsva)
-         (color conversion)
-         (except (glamour misc) background)
-         (math basic)
-         (misc list-stack)
-         (misc bytevector-utils))
+         (agave color rgba)
+         (agave color hsva)
+         (agave color conversion)
+         (except (agave glamour misc) background)
+         (agave math basic)
+         (agave misc list-stack)
+         (agave misc bytevector-utils))
 
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

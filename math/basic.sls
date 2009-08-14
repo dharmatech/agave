@@ -1,11 +1,13 @@
 
 (library
 
- (math basic)
+ (agave math basic)
 
- (export pi sq multiply-by greater-than)
+ (export pi sq multiply-by greater-than
+         add
+         subtract)
 
- (import (rnrs) (misc curry))
+ (import (rnrs) (agave misc curry))
 
  (define pi  3.14159265358979323846)
 

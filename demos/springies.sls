@@ -1,7 +1,7 @@
 
 (library
 
- (springies)
+ (agave demos springies)
 
  (export run-springies
          mass
@@ -16,10 +16,10 @@
 
  (import (rnrs)
          (srfi :26)
-         (geometry pt)
+         (agave geometry pt)
          (gl)
          (glut)
-         (glamour frames-per-second))
+         (agave glamour frames-per-second))
 
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

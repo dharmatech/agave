@@ -1,7 +1,7 @@
 
 (library
 
- (misc lists)
+ (agave misc lists)
 
  (export every-is
          every-of
@@ -10,7 +10,7 @@
 
  (import (rnrs)
          (only (srfi :1) every any)
-         (misc curry))
+         (agave misc curry))
 
  (define every-is (curry every a b))
 

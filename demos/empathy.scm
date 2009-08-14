@@ -16,10 +16,10 @@
         (srfi :27)
         (gl)
         (glut)
-        (glamour misc)
-        (glamour window)
-        (glamour frames-per-second)
-        (glamour mouse)
+        (agave glamour misc)
+        (agave glamour window)
+        (agave glamour frames-per-second)
+        (agave glamour mouse)
         )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

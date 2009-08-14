@@ -1,7 +1,7 @@
 
 (library
 
- (glamour window)
+ (agave glamour window)
 
  (export window invert-y)
 

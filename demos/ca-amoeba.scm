@@ -1,5 +1,5 @@
 
-(import (ca-gen))
+(import (agave demos ca-gen))
 
 (ca-gen (width 100)
         (height 100)

@@ -1,13 +1,13 @@
 
 (library
 
- (color conversion)
+ (agave color conversion)
 
  (export hsva->rgba)
 
  (import (rnrs)
-         (color rgba)
-         (color hsva))
+         (agave color rgba)
+         (agave color hsva))
 
  (define (hsva->rgba color)
 

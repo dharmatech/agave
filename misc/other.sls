@@ -1,7 +1,7 @@
 
 (library
 
- (misc other)
+ (agave misc other)
 
  (export =to 
          equal-to
@@ -9,7 +9,7 @@
          eqv-to)
 
  (import (rnrs)
-         (misc curry))
+         (agave misc curry))
   
  (define =to (curry = a b))
 

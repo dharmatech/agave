@@ -2,8 +2,8 @@
 (import (rnrs)
         (only (srfi :1) list-tabulate)
         (srfi :27)
-        (geometry pt)
-        (springies))
+        (agave geometry pt)
+        (agave demos springies))
 
 (reset-nodes)
 (reset-springs)

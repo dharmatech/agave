@@ -1,7 +1,7 @@
 
 (library
 
- (misc define-record-type)
+ (agave misc define-record-type)
 
  (export define-record-type++)
 

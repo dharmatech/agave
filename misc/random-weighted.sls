@@ -1,14 +1,14 @@
 
 (library
 
- (misc random-weighted)
+ (agave misc random-weighted)
 
  (export random-weighted random-weighted* call-random-weighted)
 
  (import (rnrs)
          (only (srfi :1) iota take list-index)
          (srfi :27)
-         (math basic))
+         (agave math basic))
 
  (define (probabilities weights)
    (let ((sum (apply + weights)))

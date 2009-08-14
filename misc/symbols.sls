@@ -1,7 +1,7 @@
 
 (library
 
- (misc symbols)
+ (agave misc symbols)
 
  (export symbol<?)
 

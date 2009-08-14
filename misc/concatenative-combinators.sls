@@ -1,7 +1,7 @@
 
 (library
 
- (misc concatenative-combinators)
+ (agave misc concatenative-combinators)
 
  (export uni)
 

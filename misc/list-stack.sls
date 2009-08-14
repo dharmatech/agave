@@ -1,7 +1,7 @@
 
 (library
 
- (misc list-stack)
+ (agave misc list-stack)
 
  (export push! pop!)
 

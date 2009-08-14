@@ -1,7 +1,7 @@
 
 (library
 
- (misc bytevector-utils)
+ (agave misc bytevector-utils)
 
  (export make-f64-vector
          f64-vector

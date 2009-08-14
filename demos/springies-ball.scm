@@ -1,8 +1,8 @@
 
 (import (rnrs)
         (srfi :27)
-        (geometry pt)
-        (springies))
+        (agave geometry pt)
+        (agave demos springies))
 
 (reset-nodes)
 (reset-springs)

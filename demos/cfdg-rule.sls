@@ -1,13 +1,13 @@
 
 (library
 
- (cfdg-rule)
+ (agave demos cfdg-rule)
 
  (export rule)
 
  (import (rnrs)
-         (cfdg)
-         (misc random-weighted))
+         (agave demos cfdg)
+         (agave misc random-weighted))
 
  (define-syntax rule
 

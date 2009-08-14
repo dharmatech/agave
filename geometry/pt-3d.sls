@@ -1,7 +1,7 @@
 
 (library
 
- (geometry pt-3d)
+ (agave geometry pt-3d)
 
  (export (rename (pt <pt>)
                  (make-pt pt))

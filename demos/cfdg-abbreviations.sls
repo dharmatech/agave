@@ -1,11 +1,11 @@
 
 (library
 
- (cfdg-abbreviations)
+ (agave demos cfdg-abbreviations)
 
  (export s r f h sat b a)
 
- (import (rnrs) (cfdg))
+ (import (rnrs) (agave demos cfdg))
 
  ;; geometric
 

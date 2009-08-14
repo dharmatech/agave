@@ -1,7 +1,7 @@
 
 (library
 
- (color rgba)
+ (agave color rgba)
 
  (export <rgba> rgba rgba? rgba-clone rgba-assign! apply-rgba
            
@@ -10,7 +10,7 @@
          rgba-blue  rgba-blue-set!  rgba-blue-change!
          rgba-alpha rgba-alpha-set! rgba-alpha-change!)
 
- (import (rnrs) (misc define-record-type))
+ (import (rnrs) (agave misc define-record-type))
 
  (define-record-type++
 

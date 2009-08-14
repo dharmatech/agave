@@ -6,15 +6,15 @@
 ;; Ported to Scheme by Ed Cavazos
 
 (import (rnrs)
-        (geometry pt-3d)
+        (agave geometry pt-3d)
         (gl)
         (glut)
-        (glamour misc)
-        (glamour window)
-        (glamour mouse)
-        (glamour frames-per-second)
-        (processing math)
-        (processing shapes-3d))
+        (agave glamour misc)
+        (agave glamour window)
+        (agave glamour mouse)
+        (agave glamour frames-per-second)
+        (agave processing math)
+        (agave processing shapes-3d))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

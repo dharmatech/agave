@@ -1,7 +1,7 @@
 
 (library
 
- (processing shapes-3d)
+ (agave processing shapes-3d)
 
  (export stroke
          fill
@@ -10,10 +10,10 @@
          )
 
  (import (rnrs)
-         (geometry pt-3d)
-         (color rgba)
+         (agave geometry pt-3d)
+         (agave color rgba)
          (gl)
-         (glamour misc)
+         (agave glamour misc)
          )
 
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

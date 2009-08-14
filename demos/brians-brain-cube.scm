@@ -4,8 +4,8 @@
         (srfi :27)
         (gl)
         (glut)
-        (glamour misc)
-        (glamour window))
+        (agave glamour misc)
+        (agave glamour window))
 
 (initialize-glut)
 

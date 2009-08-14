@@ -1,7 +1,7 @@
 
 (library
 
- (processing math)
+ (agave processing math)
 
  (export map-number)
 

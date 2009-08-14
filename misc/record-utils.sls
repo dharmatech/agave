@@ -1,7 +1,7 @@
 
 (library
 
- (misc record-utils)
+ (agave misc record-utils)
 
  (export field-changer)
 

@@ -1,7 +1,7 @@
 
 (library
 
- (color hsva)
+ (agave color hsva)
 
  (export <hsva> hsva hsva? hsva-clone hsva-assign! apply-hsva
            
@@ -10,7 +10,7 @@
          hsva-value      hsva-value-set!      hsva-value-change!
          hsva-alpha      hsva-alpha-set!      hsva-alpha-change!)
 
- (import (rnrs) (misc define-record-type))
+ (import (rnrs) (agave misc define-record-type))
 
  (define-record-type++
 

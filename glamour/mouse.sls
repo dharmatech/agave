@@ -1,6 +1,6 @@
 (library
 
- (glamour mouse)
+ (agave glamour mouse)
 
  (export mouse mouse-press pressed-motion passive-motion motion)
 

@@ -3,7 +3,7 @@
 
 (library
 
- (ca-gen)
+ (agave demos ca-gen)
 
  (export ca-gen)
  
@@ -11,9 +11,9 @@
          (srfi :27)
          (gl)
          (glut)
-         (glamour misc)
-         (glamour window)
-         (glamour frames-per-second))
+         (agave glamour misc)
+         (agave glamour window)
+         (agave glamour frames-per-second))
 
  (define (ca-simulation width height S B C)
 

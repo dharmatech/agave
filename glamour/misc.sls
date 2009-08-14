@@ -1,7 +1,7 @@
 
 (library
 
- (glamour misc)
+ (agave glamour misc)
 
  (export initialize-glut
          buffered-display-procedure
@@ -12,7 +12,7 @@
          gl-clear-color-rgba
          )
 
- (import (rnrs) (gl) (glut) (color rgba))
+ (import (rnrs) (gl) (glut) (agave color rgba))
 
  (define (initialize-glut)
 

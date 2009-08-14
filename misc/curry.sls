@@ -1,11 +1,11 @@
 
 (library
 
- (misc curry)
+ (agave misc curry)
 
  (export curry)
 
- (import (rnrs) (misc symbols))
+ (import (rnrs) (agave misc symbols))
 
  (define-syntax curry-helper
 

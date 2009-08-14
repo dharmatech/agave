@@ -14,9 +14,9 @@
 (import (rnrs)
         (only (srfi :1) list-tabulate)
         (gl) (glut)
-        (glamour misc)
-        (glamour window)
-        (glamour mouse))
+        (agave glamour misc)
+        (agave glamour window)
+        (agave glamour mouse))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

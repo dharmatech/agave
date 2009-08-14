@@ -1,6 +1,6 @@
 (library
 
- (glamour frames-per-second)
+ (agave glamour frames-per-second)
 
  (export frames-per-second)
 
