@@ -182,11 +182,7 @@
                    (set! positions (circular-arrangement))))
      
      ((#\1) (set! positions (circular-arrangement)))
-     ((#\2) (set! positions (random-arrangement)))
-
-     
-     
-     )
+     ((#\2) (set! positions (random-arrangement))))
 
    (display-menu)))
 
