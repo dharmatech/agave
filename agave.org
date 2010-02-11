@@ -47,23 +47,36 @@ Some of the libraries are:
 The rest of the libraries are mostly support for the demos.
 
 * Demos
+
 A couple of demo highlights. [[file:demos][Browse]] the rest.
+
 ** springies
+
 Long before [[http://sodaplay.com][Sodaplay]] existed, [[http://www.cs.rutgers.edu/~decarlo/][Doug DeCarlo]] wrote [[http://www.cs.rutgers.edu/~decarlo/software.html][xspringies]]. Springies
 is an implementation of the engine in xspringies. Note that this is
 not a binding to any C library; this is an honest to goodness mass and
 spring simulation written in pure Scheme. To me, this is a
 demonstration that Scheme can be a high-performance language.
+
 [[http://dharmatech.github.com/images/springies-belt-tire.png][Screenshot]]
+
 ** cfdg
+
 An implementation of the [[http://www.contextfreeart.org][Context Free Art]] semantics. It also renders
 the models. :-) Only a subset of the full ContextFree language is
 supported, but I picked a subset which allows for some nice pieces to
 be rendered.
+
 [[http://dharmatech.github.com/images/cfdg-game1-turn6.png][Screenshot]]
+
 ** flexi-line
+
 A port of a [[http://www.openprocessing.org/visuals/?visualID=323][demo]] I found on [[http://www.openprocessing.org][Open Processing]].
+
 ** empathy
+
 A port of a [[http://www.openprocessing.org/visuals/?visualID=1182][demo]] by [[http://www.openprocessing.org/portal/?userID=838][Kyle McDonald]] I found on [[http://www.openprocessing.org][Open Processing]].
+
 ** ca
+
 Simulator for the [[http://www.mirekw.com/ca/rullex_gene.html][generations]] family of cellular automata.
