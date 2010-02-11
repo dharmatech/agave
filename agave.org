@@ -61,6 +61,10 @@ demonstration that Scheme can be a high-performance language.
 
 [[http://dharmatech.github.com/images/springies-belt-tire.png][http://dharmatech.github.com/images/springies-belt-tire.png]]
 
+![img](http://dharmatech.github.com/images/springies-belt-tire.png)
+
+@<img src="http://dharmatech.github.com/images/springies-belt-tire.png"/>
+
 ** cfdg
 
 An implementation of the [[http://www.contextfreeart.org][Context Free Art]] semantics. It also renders
