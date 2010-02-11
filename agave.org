@@ -1,4 +1,3 @@
-
 * Quick start
 
 ** Setup
@@ -60,6 +59,8 @@ spring simulation written in pure Scheme. To me, this is a
 demonstration that Scheme can be a high-performance language.
 
 [[http://dharmatech.github.com/images/springies-belt-tire.png][http://dharmatech.github.com/images/springies-belt-tire.png]]
+
+![img](http://dharmatech.github.com/images/springies-belt-tire.png)
 
 ** cfdg
 
