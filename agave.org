@@ -62,7 +62,7 @@ demonstration that Scheme can be a high-performance language.
 
 ![img](http://dharmatech.github.com/images/springies-belt-tire.png)
 
-@<img src="http://dharmatech.github.com/images/springies-belt-tire.png"/>
+<img src="http://dharmatech.github.com/images/springies-belt-tire.png" />
 
 ** cfdg
 
