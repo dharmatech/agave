@@ -34,15 +34,15 @@ Some of the libraries are:
 
 | library                           | notes |
 |-----------------------------------+-------|
-| (agave glamour window)            |       |
-| (agave glamour mouse)             |       |
-| (agave glamour misc)              |       |
-| (agave glamour frames-per-second) |       |
-| (agave color rgba)                |       |
-| (agave color hsva)                |       |
-| (agave color conversion)          |       |
-| (agave geometry pt)               |       |
-| (agave geometry pt-3d)            |       |
+| [[file:glamour/window.sls][(agave glamour window)]]            |       |
+| [[file:glamour/mouse.sls][(agave glamour mouse)]]             |       |
+| [[file:glamour/misc.sls][(agave glamour misc)]]              |       |
+| [[file:glamour/frames-per-second.sls][(agave glamour frames-per-second)]] |       |
+| [[file:color/rgba.sls][(agave color rgba)]]                |       |
+| [[file:color/hsva.sls][(agave color hsva)]]                |       |
+| [[file:color/conversion.sls][(agave color conversion)]]          |       |
+| [[file:geometry/pt.sls][(agave geometry pt)]]               |       |
+| [[file:geometry/pt-3d.sls][(agave geometry pt-3d)]]            |       |
 
 The rest of the libraries are mostly support for the demos.
 
@@ -58,9 +58,7 @@ not a binding to any C library; this is an honest to goodness mass and
 spring simulation written in pure Scheme. To me, this is a
 demonstration that Scheme can be a high-performance language.
 
-[[http://dharmatech.github.com/images/springies-belt-tire.png][http://dharmatech.github.com/images/springies-belt-tire.png]]
-
-[[http://dharmatech.github.com/images/springies-belt-tire.png]]
+[[http://dharmatech.github.com/images/springies-belt-tire.png][Screenshot]]
 
 ** cfdg
 
@@ -69,3 +67,4 @@ the models. :-) Only a subset of the full ContextFree language is
 supported, but I picked a subset which allows for some nice pieces to
 be rendered.
 
+[[http://dharmatech.github.com/images/cfdg-game1-turn6.png][Screenshot]]
