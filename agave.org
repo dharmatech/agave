@@ -67,7 +67,9 @@ the models. :-) Only a subset of the full ContextFree language is
 supported, but I picked a subset which allows for some nice pieces to
 be rendered.
 
-[[http://dharmatech.github.com/images/cfdg-game1-turn6.png][Screenshot]]
+Screenshot:
+
+[[http://dharmatech.github.com/images/cfdg-game1-turn6.png]]
 
 ** flexi-line
 
