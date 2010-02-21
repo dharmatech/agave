@@ -14,9 +14,12 @@
 (import (rnrs)
         (only (srfi :1) list-tabulate)
         (gl) (glut)
+        (dharmalab records define-record-type)
+        (dharmalab misc limit-call-rate)
         (agave glamour misc)
         (agave glamour window)
-        (agave glamour mouse))
+        (agave glamour mouse)
+        (agave geometry pt))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -30,77 +33,42 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define make-point
+(define-record-type++ point
+  (fields pos vel))
 
-  (let ((pow 1))
-    
-    (lambda (x y)
-      
-      (let ((dx 0)
-            (dy 0))
-
-        (let ((update
-               (lambda ()
-
-                 ;; accelerate
-
-                 (if (= mouse-state GLUT_DOWN)
-                     (let ((k (* pow pow (if (= mouse-button GLUT_LEFT_BUTTON)
-                                             1 -1)))
-                           
-                           (ang (atan (- mouse-y y)
-                                      (- mouse-x x))))
-
-                       (set! dx (+ dx (* k (cos ang))))
-                       (set! dy (+ dy (* k (sin ang))))))
-
-                 ;; move
-
-                 (set! dx (* dx 0.98))
-                 (set! dy (* dy 0.98))
-
-                 (set! x (+ x dx))
-                 (set! y (+ y dy))
-
-                 ;; draw
-
-                 (glVertex2d x y))))
-
-          (vector 'point update))))))
-
-(define (update-point p)
-  ((vector-ref p 1)))
+(define (point::update p)
+  (is-point p)
+  (glVertex2d (pt-x p.pos) (pt-y p.pos))
+  (make-point (pt+ p.pos p.vel)
+              (if (= mouse-state GLUT_DOWN)
+                  (let ((push/pull (if (= mouse-button GLUT_LEFT_BUTTON) 1 -1)))
+                    (pt*n (pt+ p.vel
+                               (pt*n (pt-normalize (pt- (pt mouse-x mouse-y) p.pos))
+                                     push/pull))
+                          0.98))
+                  (pt*n p.vel 0.98))))
 
 (define num 5000)
 
 (define points
   (list-tabulate num
                  (lambda (i)
-                   (make-point (inexact (* (/ i num) width))
-                               (inexact (/ height 2))))))
-
-(define (update-points)
-  (for-each update-point points))
+                   (make-point (pt (inexact (* (/ i num) width))
+                                   (inexact (/ height 2)))
+                               (pt 0.0 0.0)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (buffered-display-procedure
- 
  (lambda ()
-   
    (background 0.0)
-   
    (glColor4d 1.0 1.0 1.0 1.0)
-   
-   (glBegin GL_LINE_STRIP)
-   (update-points)
-   (glEnd)))
+   (gl-begin GL_LINE_STRIP
+     (set! points (map point::update points)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(glutIdleFunc
- (lambda ()
-   (glutPostRedisplay)))
+(glutIdleFunc (limit-call-rate 20 (glutPostRedisplay)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
