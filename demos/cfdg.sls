@@ -1,7 +1,5 @@
 
-(library
-
- (agave demos cfdg)
+(library (agave demos cfdg)
 
  (export background
          viewport
@@ -32,7 +30,7 @@
          (agave color hsva)
          (agave color conversion)
          (except (agave glamour misc) background)
-         (agave math basic)
+         (dharmalab math basic)
          (agave misc list-stack)
          (agave misc bytevector-utils))
 

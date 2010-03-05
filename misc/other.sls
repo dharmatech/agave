@@ -9,7 +9,9 @@
          eqv-to)
 
  (import (rnrs)
-         (agave misc curry))
+         ;; (agave misc curry)
+         (dharmalab misc extended-curry)
+         )
   
  (define =to (curry = a b))
 

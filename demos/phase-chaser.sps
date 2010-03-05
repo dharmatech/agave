@@ -17,7 +17,7 @@
         (xitomatl fmt)
         (gl)
         (glut)
-        (only (agave math basic) pi)
+        (only (dharmalab math basic) pi)
         (agave glamour window)
         (agave glamour misc)
         (agave geometry pt))

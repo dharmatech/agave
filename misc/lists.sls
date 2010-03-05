@@ -10,7 +10,7 @@
 
  (import (rnrs)
          (only (srfi :1) every any)
-         (agave misc curry))
+         (dharmalab misc extended-curry))
 
  (define every-is (curry every a b))
 

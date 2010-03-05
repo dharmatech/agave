@@ -1,14 +1,12 @@
 
-(library
-
- (agave misc random-weighted)
+(library (agave misc random-weighted)
 
  (export random-weighted random-weighted* call-random-weighted)
 
  (import (rnrs)
          (only (srfi :1) iota take list-index)
-         (srfi :27)
-         (agave math basic))
+         (srfi :27 random-bits)
+         (dharmalab math basic))
 
  (define (probabilities weights)
    (let ((sum (apply + weights)))
