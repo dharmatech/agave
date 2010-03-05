@@ -30,7 +30,7 @@
          (agave color hsva)
          (agave color conversion)
          (except (agave glamour misc) background)
-         (dharmalab math basic)
+         (except (dharmalab math basic) square)
          (agave misc list-stack)
          (agave misc bytevector-utils))
 
