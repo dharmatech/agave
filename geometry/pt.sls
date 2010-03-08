@@ -13,7 +13,8 @@
          pt-neg
          pt-norm
          pt-normalize
-         pt-dot)
+         pt-dot
+         pt-distance)
 
  (import (rnrs)
          (agave glamour misc)
@@ -71,5 +72,8 @@
    (let ((val (pt* a b)))
      (+ (pt-x val)
         (pt-y val))))
+
+ (define (pt-distance a b)
+   (pt-norm (pt- a b)))
 
  )
