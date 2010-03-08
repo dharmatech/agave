@@ -12,49 +12,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (import (rnrs)
-        (only (srfi :1) list-tabulate)
-        (srfi :27)
+        (srfi :27 random-bits)
         (gl)
         (glut)
+        (dharmalab misc list)
+        (dharmalab math basic)
+        (dharmalab records define-record-type)
+        (agave processing math)
+        (agave geometry pt)
         (agave glamour misc)
-        (agave glamour window)
-        (agave glamour frames-per-second)
-        (agave glamour mouse)
-        )
+        (agave glamour window))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define pi  3.14159265358979323846)
-
-(define (sq n) (* n n))
-
-(define random
-
-  (case-lambda
-
-   ((a b)
-
-    (cond ((and (integer? a)
-                (integer? b))
-
-           (+ a (random-integer (- b a))))
-
-          (else
-
-           (+ a (* (- b a)
-                   (random-real))))))
-
-   ((a)
-
-    (cond ((integer? a) (random 0 a))
-
-          (else (random 0.0 a))))
-
-   (() (random-real))))
-
-(define (dist x1 y1 x2 y2)
-  (sqrt (+ (sq (- x2 x1))
-           (sq (- y2 y1)))))
+(define (gl-vertex-pt p)
+  (glVertex2d (pt-x p)
+              (pt-y p)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -66,8 +39,6 @@
         (title "Empathy by Kyle McDonald")
         (reshape (width height) invert-y))
 
-(passive-motion mouse-x mouse-y)
-
 (glEnable GL_LINE_SMOOTH)
 
 (glEnable GL_BLEND)
@@ -77,93 +48,69 @@
 
 (define number-of-cells     5000)
 (define base-line-length    37)
-(define rotation-speed-step 0.004)
+(define rotation-factor     0.004)
 (define slow-down-rate      0.97)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define (det x1 y1 x2 y2 x3 y3)
-  (-   (* (- x2 x1)
-          (- y3 y1))
+(define current-mouse-pos  #f)
+(define previous-mouse-pos #f)
 
-       (* (- x3 x1)
-          (- y2 y1))))
+(glutPassiveMotionFunc
+ (lambda (x y)
+   (set! current-mouse-pos (pt x y))))
 
-(define p-mouse-x 0)
-(define p-mouse-y 0)
+(define (x*y pt)
+  (* (pt-x pt)
+     (pt-y pt)))
 
-(define (cell x y)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (let ((spin-velocity 0)
-        (current-angle 0))
+(define-record-type++ cell
+  (fields pos
+          spin-velocity
+          current-angle))
 
-    (let ((sense
-           (lambda ()
-             
-             (if (or (not (= p-mouse-x 0))
-                     (not (= p-mouse-y 0)))
-                 
-                 (set! spin-velocity
-
-                   (+ spin-velocity
-
-                      (/ (* rotation-speed-step
-
-                            (det x y p-mouse-x p-mouse-y mouse-x mouse-y))
-
-                         (+ (dist x y mouse-x mouse-y) 1)))))
-
-             (set! spin-velocity (* spin-velocity slow-down-rate))
-
-             (set! current-angle (+ current-angle spin-velocity))
-
-             (let ((d (+ 0.001 (* base-line-length spin-velocity))))
-
-               (glVertex2d x y)
-               (glVertex2d (+ x (* d (cos current-angle)))
-                           (+ y (* d (sin current-angle))))))))
-
-      (vector 'cell sense))))
-
-(define (sense cell)
-  ((vector-ref cell 1)))
+(define (cell::sense c)
+  (import-cell c)
+  (let ((spin-velocity (* (+ spin-velocity
+                             (/ (* rotation-factor
+                                   (- (x*y (pt- previous-mouse-pos pos))
+                                      (x*y (pt- current-mouse-pos  pos))))
+                                (+ (pt-distance pos current-mouse-pos) 1)))
+                          slow-down-rate)))
+    (let ((current-angle (+ current-angle spin-velocity)))
+      (let ((d (+ 0.001 (* base-line-length spin-velocity))))
+        (gl-vertex-pt pos)
+        (gl-vertex-pt (pt+ pos
+                           (pt (* d (cos current-angle))
+                               (* d (sin current-angle))))))
+      (make-cell pos spin-velocity current-angle))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define cells
-  (list-tabulate number-of-cells
-    (lambda (i)
-
-      (let ((theta (+ i (random 0 (/ pi 9))))
-            (dista (+ 3
-
-                      (random -3 3)
-
-                      (* (/ i number-of-cells)
-
-                         (/ width 2)
-
-                         (* (/ (- number-of-cells i) number-of-cells) 3.3)))))
-
-        (cell (+   (/ width  2)   (* dista (cos theta)))
-              (+   (/ height 2)   (* dista (sin theta))))))))
+  (let ((center (pt (/ width  2.0)
+                    (/ height 2.0))))
+    (list-tabulate number-of-cells
+                   (lambda (i)
+                     (let loop ()
+                       (let ((p (pt (inexact (random width))
+                                    (inexact (random height)))))
+                         (if (< (pt-distance center p)
+                                (* width 0.45))
+                             (make-cell p 0 0)
+                             (loop))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (buffered-display-procedure
-
  (lambda ()
-
    (background 1.0)
-
    (glColor4d 0.0 0.0 0.0 0.5)
-
-   (glBegin GL_LINES)
-   (for-each sense cells)
-   (glEnd)
-
-   (set! p-mouse-x mouse-x)
-   (set! p-mouse-y mouse-y)))
+   (if previous-mouse-pos
+       (gl-begin GL_LINES (set! cells (map cell::sense cells))))
+   (set! previous-mouse-pos current-mouse-pos)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -171,12 +118,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(glutIdleFunc
- (lambda ()
-   (glutPostRedisplay)))
-
-;; (glutIdleFunc
-;;  (frames-per-second 10))
+(glutIdleFunc glutPostRedisplay)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
