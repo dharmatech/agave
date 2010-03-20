@@ -10,7 +10,7 @@
 (import (rnrs)
         (dharmalab misc queue)
         (gl)
-        (agave glu)
+        (agave glu compat)
         (glut)
         (agave glamour window)
         (agave glamour mouse)

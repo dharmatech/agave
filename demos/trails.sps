@@ -11,7 +11,7 @@
         (rnrs mutable-pairs)
         (only (srfi :1) circular-list for-each iota)
         (gl)
-        (agave glu)
+        (agave glu compat)
         (glut)
         (agave glamour window)
         (agave glamour mouse)
