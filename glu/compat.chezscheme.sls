@@ -5,7 +5,7 @@
 
 ;;; Ported to Chez Scheme by Ed Cavazos (wayo.cavazos@gmail.com)
 
-(library (glu)
+(library (agave glu compat)
 
   (export GLU_EXT_object_space_tess
           GLU_EXT_nurbs_tessellator
