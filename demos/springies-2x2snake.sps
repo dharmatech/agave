@@ -1,7 +1,7 @@
 
 (import (rnrs)
-        (only (srfi :1) list-tabulate)
-        (srfi :27)
+        (only (surfage s1 lists) list-tabulate)
+        (surfage s27 random-bits)
         (agave geometry pt)
         (agave demos springies))
 

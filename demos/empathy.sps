@@ -12,7 +12,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (import (rnrs)
-        (srfi :27 random-bits)
+        (surfage s27 random-bits)
         (gl)
         (glut)
         (dharmalab misc list)

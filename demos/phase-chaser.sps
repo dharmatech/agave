@@ -12,8 +12,8 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (import (rnrs)
-        (only (srfi :1 lists) list-tabulate)
-        (srfi :27 random-bits)
+        (only (surfage s1 lists) list-tabulate)
+        (surfage s27 random-bits)
         (xitomatl fmt)
         (gl)
         (glut)

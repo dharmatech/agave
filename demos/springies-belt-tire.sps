@@ -1,6 +1,6 @@
 
 (import (rnrs)
-        (srfi :27)
+        (surfage s27 random-bits)
         (agave geometry pt)
         (agave demos springies))
 

@@ -15,7 +15,7 @@
          get-nodes)
 
  (import (rnrs)
-         (srfi :26)
+         (surfage s26 cut)
          (agave geometry pt)
          (gl)
          (glut)

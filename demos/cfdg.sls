@@ -22,8 +22,8 @@
          run-model)
 
  (import (rnrs)
-         (only (srfi :1) first second third fourth)
-         (srfi :27)
+         (only (surfage s1 lists) first second third fourth)
+         (surfage s27 random-bits)
          (gl)
          (glut)
          (agave color rgba)

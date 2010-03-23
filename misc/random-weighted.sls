@@ -4,8 +4,8 @@
  (export random-weighted random-weighted* call-random-weighted)
 
  (import (rnrs)
-         (only (srfi :1) iota take list-index)
-         (srfi :27 random-bits)
+         (only (surfage s1 lists) iota take list-index)
+         (surfage s27 random-bits)
          (dharmalab math basic))
 
  (define (probabilities weights)

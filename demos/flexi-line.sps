@@ -12,7 +12,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (import (rnrs)
-        (only (srfi :1) list-tabulate)
+        (only (surfage s1 lists) list-tabulate)
         (gl) (glut)
         (dharmalab records define-record-type)
         (dharmalab misc limit-call-rate)

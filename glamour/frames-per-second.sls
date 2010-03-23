@@ -4,7 +4,7 @@
 
  (export frames-per-second)
 
- (import (rnrs) (srfi :19) (glut))
+ (import (rnrs) (surfage s19 time) (glut))
 
  (define (current-time-in-nanoseconds)
    (let ((val (current-time)))

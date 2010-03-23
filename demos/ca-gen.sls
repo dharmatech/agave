@@ -8,7 +8,7 @@
  (export ca-gen)
  
  (import (rnrs)
-         (srfi :27)
+         (surfage s27 random-bits)
          (gl)
          (glut)
          (agave glamour misc)

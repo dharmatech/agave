@@ -9,7 +9,7 @@
 
 (import (except (rnrs) for-each)
         (rnrs mutable-pairs)
-        (only (srfi :1) circular-list for-each iota)
+        (only (surfage s1 lists) circular-list for-each iota)
         (gl)
         (agave glu compat)
         (glut)

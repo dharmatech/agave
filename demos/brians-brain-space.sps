@@ -1,7 +1,7 @@
 
 (import (rnrs)
-        (only (srfi :1) first second)
-        (srfi :27)
+        (only (surfage s1 lists) first second)
+        (surfage s27 random-bits)
         (gl)
         (glut)
         (agave glamour misc)

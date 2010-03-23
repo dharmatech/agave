@@ -4,7 +4,7 @@
  (export map-number random)
 
  (import (rnrs)
-         (srfi :27 random-bits))
+         (surfage s27 random-bits))
 
  (define (map-number value low1 high1 low2 high2)
    (+ low2
