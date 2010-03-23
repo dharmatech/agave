@@ -1,8 +1,6 @@
 
 (import (rnrs)
         (only (surfage s1 lists) filter-map)
-        (surfage s19 time)
-        (surfage s27 random-bits)
         (surfage s42 eager-comprehensions)
         (gl)
         (glut)
@@ -11,7 +9,9 @@
         (agave glu compat)
         (agave geometry pt)
         (agave glamour window)
-        (agave glamour misc))
+        (agave glamour misc)
+        (surfage s19 time)
+        (surfage s27 random-bits))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; utilities
