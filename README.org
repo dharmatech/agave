@@ -34,21 +34,21 @@ Some of the libraries are:
 
 | library                           | notes |
 |-----------------------------------+-------|
-| [[file:glamour/window.sls][(agave glamour window)]]            |       |
-| [[file:glamour/mouse.sls][(agave glamour mouse)]]             |       |
-| [[file:glamour/misc.sls][(agave glamour misc)]]              |       |
-| [[file:glamour/frames-per-second.sls][(agave glamour frames-per-second)]] |       |
-| [[file:color/rgba.sls][(agave color rgba)]]                |       |
-| [[file:color/hsva.sls][(agave color hsva)]]                |       |
-| [[file:color/conversion.sls][(agave color conversion)]]          |       |
-| [[file:geometry/pt.sls][(agave geometry pt)]]               |       |
-| [[file:geometry/pt-3d.sls][(agave geometry pt-3d)]]            |       |
+| (agave glamour window)            |       |
+| (agave glamour mouse)             |       |
+| (agave glamour misc)              |       |
+| (agave glamour frames-per-second) |       |
+| (agave color rgba)                |       |
+| (agave color hsva)                |       |
+| (agave color conversion)          |       |
+| (agave geometry pt)               |       |
+| (agave geometry pt-3d)            |       |
 
 The rest of the libraries are mostly support for the demos.
 
 * Demos
 
-A couple of demo highlights. [[file:demos][Browse]] the rest.
+A few demo highlights.
 
 ** springies
 
