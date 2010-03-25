@@ -1,7 +1,6 @@
 
 (import (rnrs)
         (only (surfage s1 lists) filter-map)
-        (surfage s42 eager-comprehensions)
         (gl)
         (glut)
         (dharmalab records define-record-type)
@@ -11,10 +10,17 @@
         (agave glamour window)
         (agave glamour misc)
         (surfage s19 time)
-        (surfage s27 random-bits))
+        (surfage s27 random-bits)
+        (surfage s42 eager-comprehensions))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; utilities
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (say . args)
+  (for-each display args)
+  (newline))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (gl-translate-pt p)
@@ -81,10 +87,6 @@
 (define particles '())
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(define key-pressed #f)
-
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; bullet
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -109,12 +111,26 @@
 (define asteroids #f)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; bullet-pack
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-record-type++ bullet-pack
+  (fields (mutable pos)
+          (mutable vel)))
+
+(define pack #f)
+
+(is-bullet-pack pack)
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (initialize-glut)
 
 (window (size 800 400)
-        (title "test")
+        (title "Asteroids")
         (reshape (width height)))
+
+(random-source-randomize! default-random-source)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -132,6 +148,8 @@
 
 (is-spaceship ship)
 
+(define ammo 0)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set! asteroids
@@ -141,6 +159,13 @@
                        (pt (inexact (+ -50 (random-integer 100)))
                            (inexact (+ -50 (random-integer 100))))
                        50.0)))
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set! pack (make-bullet-pack (pt (inexact (random-integer width))
+                                 (inexact (random-integer height)))
+                             (pt (inexact (+ -50 (random-integer 100)))
+                                 (inexact (+ -50 (random-integer 100))))))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -195,6 +220,14 @@
        (glutWireSphere (asteroid-radius asteroid) 10 10)))
     asteroids)
 
+   ;; bullet-pack
+
+   (glColor3f 0.0 0.0 1.0)
+
+   (gl-matrix-excursion
+    (gl-translate-pt pack.pos)
+    (glutWireCube 10.0))
+
    ))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -210,6 +243,8 @@
   (set! last-time (current-time-in-seconds))
 
   (ship.pos! (pt-wrap (pt+ ship.pos (pt*n ship.vel dt))))
+
+  (pack.pos! (pt-wrap (pt+ pack.pos (pt*n pack.vel dt))))
 
   (set! particles
         (filter-map
@@ -249,9 +284,7 @@
                   a.radius)
           
           (begin (set! score (+ score 1))
-                 (display "score: ")
-                 (display score)
-                 (newline)
+                 (say "score: " score)
                  #f)
           
           (set! asteroids
@@ -320,6 +353,16 @@
                                (inexact (+ -50 (random-integer 100))))
                            50.0))))
 
+  ;; ship pack contact
+
+  (when (<= (pt-distance ship.pos pack.pos) 10.0)
+    (set! ammo (+ ammo 5))
+    (set! pack (make-bullet-pack (pt (inexact (random-integer width))
+                                     (inexact (random-integer height)))
+                                 (pt (inexact (+ -50 (random-integer 100)))
+                                     (inexact (+ -50 (random-integer 100))))))
+    (say "ammo: " ammo))
+
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -363,14 +406,30 @@
      ((#\x) (ship.theta! (+ ship.theta (radians 180.0))))
 
      ((#\space)
-      (set! bullets
-            (cons
-             (make-bullet ship.pos
-                          (pt+ ship.vel
-                               (pt*n (angle->pt ship.theta) 400.0))
-                          (current-time-in-seconds))
-             bullets)))
+
+      (when (> ammo 0)
+
+        (set! ammo (- ammo 1))
+      
+        (set! bullets
+              (cons
+               (make-bullet ship.pos
+                            (pt+ ship.vel
+                                 (pt*n (angle->pt ship.theta) 400.0))
+                            (current-time-in-seconds))
+               bullets)))
+
+      (say "ammo: " ammo)
+      )
      )))
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(say "w   - Thrusters")
+(say "a/d - Left/Right")
+(say "s   - Stop")
+(say "x   - Flip")
+(say "spc - Laser")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
