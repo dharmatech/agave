@@ -58,7 +58,7 @@ not a binding to any C library; this is an honest to goodness mass and
 spring simulation written in pure Scheme. To me, this is a
 demonstration that Scheme can be a high-performance language.
 
-[[http://dharmatech.github.com/images/springies-belt-tire.png]]
+[[https://raw.githubusercontent.com/dharmatech/dharmatech.github.com/master/images/springies-belt-tire.png]]
 
 ** cfdg
 
