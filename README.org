@@ -69,7 +69,7 @@ be rendered.
 
 Screenshot:
 
-[[http://dharmatech.github.com/images/cfdg-game1-turn6.png]]
+[[https://raw.githubusercontent.com/dharmatech/dharmatech.github.com/master/images/cfdg-game1-turn6.png]]
 
 ** flexi-line
 
