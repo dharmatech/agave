@@ -32,6 +32,7 @@ All of the demos run in Ikarus and Ypsilon.
 
 Some of the libraries are:
 
+```
 | library                           | notes |
 |-----------------------------------+-------|
 | (agave glamour window)            |       |
@@ -43,6 +44,7 @@ Some of the libraries are:
 | (agave color conversion)          |       |
 | (agave geometry pt)               |       |
 | (agave geometry pt-3d)            |       |
+```
 
 The rest of the libraries are mostly support for the demos.
 
