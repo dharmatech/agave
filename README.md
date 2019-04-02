@@ -12,6 +12,10 @@
 
     $ ypsilon ~/scheme/agave/demos/flexi-line.scm
 
+## Run a demo in Chez
+
+    $ chez --program ~/scheme/agave/demos/flexi-line.scm
+
 ## Run a demo in Ikarus
 
     $ ikarus --r6rs-script ~/scheme/agave/demos/flexi-line.scm
